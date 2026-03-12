@@ -166,29 +166,46 @@ ER-диаграмма: [`docs/er-diagram.png`](./docs/er-diagram.png)
 
 ## Тестирование API
 
-### Примеры запросов
+### Примеры запросов (curl для Windows)
+
+> **Важно:** Заголовок `Accept: application/json` обязателен для API-ответов Laravel.
 
 **Регистрация:**
-```bash
-curl -X POST http://localhost:8000/api/register \
-  -H "Content-Type: application/json" \
-  -d '{"name":"John","email":"john@example.com","password":"password123"}'
+```cmd
+curl -X POST http://localhost:8000/api/register -H "Content-Type: application/json" -H "Accept: application/json" -d "{\"name\":\"John\",\"email\":\"john@example.com\",\"password\":\"password123\"}"
 ```
 
 **Вход:**
-```bash
-curl -X POST http://localhost:8000/api/login \
-  -H "Content-Type: application/json" \
-  -d '{"email":"john@example.com","password":"password123"}'
+```cmd
+curl -X POST http://localhost:8000/api/login -H "Content-Type: application/json" -H "Accept: application/json" -d "{\"email\":\"john@example.com\",\"password\":\"password123\"}"
 ```
 
 **Создание опроса (с токеном):**
-```bash
-curl -X POST http://localhost:8000/api/surveys \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer <ваш_токен>" \
-  -d '{"title":"Мой опрос","description":"Описание"}'
+```cmd
+curl -X POST http://localhost:8000/api/surveys -H "Content-Type: application/json" -H "Accept: application/json" -H "Authorization: Bearer <ваш_токен>" -d "{\"title\":\"Мой опрос\",\"description\":\"Описание\"}"
 ```
+
+**Список опросов:**
+```cmd
+curl -X GET http://localhost:8000/api/surveys -H "Accept: application/json"
+```
+
+**Добавить вопрос:**
+```cmd
+curl -X POST http://localhost:8000/api/surveys/1/questions -H "Content-Type: application/json" -H "Accept: application/json" -H "Authorization: Bearer <ваш_токен>" -d "{\"type\":\"single_choice\",\"text\":\"Ваш любимый цвет?\",\"order\":1,\"required\":true}"
+```
+
+**Пройти опрос:**
+```cmd
+curl -X POST http://localhost:8000/api/surveys/1/respond -H "Content-Type: application/json" -H "Accept: application/json" -H "Authorization: Bearer <ваш_токен>" -d "{\"answers\":[{\"question_id\":1,\"option_id\":1},{\"question_id\":2,\"option_ids\":[1,3]},{\"question_id\":3,\"text_value\":\"Текстовый ответ\"}]}"
+```
+
+**Статистика по опросу:**
+```cmd
+curl -X GET http://localhost:8000/api/surveys/1/results -H "Accept: application/json" -H "Authorization: Bearer <ваш_токен>"
+```
+
+> **Примечание:** В Windows `curl` не поддерживает перенос строк через `\`. Все параметры указываются в одной строке.
 
 ---
 

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('email', 100)->unique()->nullable(false);
             $table->string('password', 255)->nullable(false);
             $table->unsignedBigInteger('role')->nullable();
-            $table->timestamp('created_at')->useCurrent();
-            
+            $table->timestamps();
+
             $table->foreign('role')->references('id')->on('roles');
         });
     }

@@ -9,6 +9,20 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Survey extends Model
 {
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<string>
+     */
+    protected $fillable = [
+        'author_id',
+        'title',
+        'description',
+        'status',
+        'published_at',
+        'closed_at',
+    ];
+
+    /**
      * Get the author of the survey.
      */
     public function author(): BelongsTo
