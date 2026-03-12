@@ -134,8 +134,10 @@ API доступен по адресу: `http://localhost:8000/api`
 | `GET` | `/api/surveys/{id}/results` | Статистика | Да |
 | `GET` | `/api/surveys/{id}/results/export` | Экспорт в JSON | Да |
 
-> **Примечание:** Для защищённых эндпоинтов передавайте токен в заголовке:  
+> **Примечание:** Для защищённых эндпоинтов передавайте токен в заголовке:
 > `Authorization: Bearer <ваш_токен>`
+
+Полная документация API доступна в файле [`survey-api.md`](./survey-api.md).
 
 ---
 
@@ -164,51 +166,6 @@ ER-диаграмма: [`docs/er-diagram.png`](./docs/er-diagram.png)
 
 ---
 
-## Тестирование API
-
-### Примеры запросов (curl для Windows)
-
-> **Важно:** Заголовок `Accept: application/json` обязателен для API-ответов Laravel.
-
-**Регистрация:**
-```cmd
-curl -X POST http://localhost:8000/api/register -H "Content-Type: application/json" -H "Accept: application/json" -d "{\"name\":\"John\",\"email\":\"john@example.com\",\"password\":\"password123\"}"
-```
-
-**Вход:**
-```cmd
-curl -X POST http://localhost:8000/api/login -H "Content-Type: application/json" -H "Accept: application/json" -d "{\"email\":\"john@example.com\",\"password\":\"password123\"}"
-```
-
-**Создание опроса (с токеном):**
-```cmd
-curl -X POST http://localhost:8000/api/surveys -H "Content-Type: application/json" -H "Accept: application/json" -H "Authorization: Bearer <ваш_токен>" -d "{\"title\":\"Мой опрос\",\"description\":\"Описание\"}"
-```
-
-**Список опросов:**
-```cmd
-curl -X GET http://localhost:8000/api/surveys -H "Accept: application/json"
-```
-
-**Добавить вопрос:**
-```cmd
-curl -X POST http://localhost:8000/api/surveys/1/questions -H "Content-Type: application/json" -H "Accept: application/json" -H "Authorization: Bearer <ваш_токен>" -d "{\"type\":\"single_choice\",\"text\":\"Ваш любимый цвет?\",\"order\":1,\"required\":true}"
-```
-
-**Пройти опрос:**
-```cmd
-curl -X POST http://localhost:8000/api/surveys/1/respond -H "Content-Type: application/json" -H "Accept: application/json" -H "Authorization: Bearer <ваш_токен>" -d "{\"answers\":[{\"question_id\":1,\"option_id\":1},{\"question_id\":2,\"option_ids\":[1,3]},{\"question_id\":3,\"text_value\":\"Текстовый ответ\"}]}"
-```
-
-**Статистика по опросу:**
-```cmd
-curl -X GET http://localhost:8000/api/surveys/1/results -H "Accept: application/json" -H "Authorization: Bearer <ваш_токен>"
-```
-
-> **Примечание:** В Windows `curl` не поддерживает перенос строк через `\`. Все параметры указываются в одной строке.
-
----
-
 ## 📁 Структура проекта
 
 ```
@@ -225,6 +182,9 @@ practice-backend-2026/
 │   └── .env                      # Конфигурация
 ├── docs/
 │   ├── er-diagram.png            # ER-диаграмма
+│   ├── Survey API.openapi.json   # OpenAPI спецификация 
+│   ├── Survey API.apidog.json    # ApiDog спецификация
+│   ├── Survey API.postman.json   # Postman коллекция
 │   └── survey_api.sql            # SQL-схема
 ├── tests/                        # Автотесты
 ├── README.md                     # Этот файл
@@ -236,8 +196,10 @@ practice-backend-2026/
 
 ## 📚 Документация
 
-- [План разработки](./plans/survey-api-laravel.md)
-- [Отчёты](./reports/)
+- [Survey API — предметная область](./survey-api.md)
+- [ER-диаграмма](./docs/er-diagram.png)
+- [OpenAPI спецификация](./docs/Survey%20API.openapi.json)
+- [Postman коллекция](./docs/Survey%20API.postman.json)
 - [Задание практики](./Task.md)
 
 ---

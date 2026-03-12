@@ -1,0 +1,5319 @@
+{
+  "apidogProject": "1.0.0",
+  "$schema": {
+    "app": "apidog",
+    "type": "project",
+    "version": "1.2.0"
+  },
+  "info": {
+    "name": "Survey API",
+    "description": "",
+    "mockRule": {
+      "rules": [],
+      "enableSystemRule": true
+    }
+  },
+  "projectSetting": {
+    "id": "1226020",
+    "auth": {},
+    "securityScheme": {},
+    "gateway": [],
+    "language": "en-US",
+    "apiStatuses": [
+      "developing",
+      "testing",
+      "released",
+      "deprecated"
+    ],
+    "mockSettings": {},
+    "preProcessors": [],
+    "postProcessors": [],
+    "advancedSettings": {
+      "enableJsonc": false,
+      "enableBigint": false,
+      "responseValidate": true,
+      "enableTestScenarioSetting": false,
+      "enableYAPICompatScript": false,
+      "isDefaultUrlEncoding": 3,
+      "publishedDocUrlRules": {
+        "defaultRule": "SLUGIFY_WITH_RESOURCE_KEY",
+        "resourceKeyStandard": "NEW"
+      }
+    },
+    "initialDisabledMockIds": [],
+    "servers": [
+      {
+        "id": "default",
+        "name": "Default Server",
+        "moduleId": 1131474
+      },
+      {
+        "id": "1131493",
+        "name": "Default Server",
+        "moduleId": 1131493
+      }
+    ],
+    "cloudMock": {
+      "security": "free",
+      "enable": false,
+      "tokenKey": "apidogToken"
+    }
+  },
+  "apiCollection": [
+    {
+      "name": "Root",
+      "id": 7216725,
+      "auth": {},
+      "securityScheme": {},
+      "parentId": 0,
+      "serverId": "",
+      "description": "",
+      "identityPattern": {
+        "httpApi": {
+          "type": "methodAndPath",
+          "bodyType": "",
+          "fields": []
+        }
+      },
+      "shareSettings": {},
+      "visibility": "SHARED",
+      "moduleId": 1131474,
+      "preProcessors": [
+        {
+          "id": "inheritProcessors",
+          "type": "inheritProcessors",
+          "data": {}
+        }
+      ],
+      "postProcessors": [
+        {
+          "id": "inheritProcessors",
+          "type": "inheritProcessors",
+          "data": {}
+        }
+      ],
+      "inheritPostProcessors": {},
+      "inheritPreProcessors": {},
+      "items": []
+    },
+    {
+      "name": "Root",
+      "id": 7216914,
+      "auth": {
+        "type": "noauth"
+      },
+      "securityScheme": {},
+      "parentId": 0,
+      "serverId": "",
+      "description": "",
+      "identityPattern": {
+        "httpApi": {
+          "type": "methodAndPath",
+          "bodyType": "",
+          "fields": []
+        }
+      },
+      "shareSettings": {},
+      "visibility": "SHARED",
+      "moduleId": 1131493,
+      "preProcessors": [
+        {
+          "executionTiming": "prerequest",
+          "defaultEnable": true,
+          "enable": true,
+          "data": "",
+          "type": "customScript",
+          "id": "1CrRr3tnCmuxYZ6S8IgBQjsrXv9Pr65T"
+        },
+        {
+          "id": "inheritProcessors",
+          "type": "inheritProcessors",
+          "data": {}
+        }
+      ],
+      "postProcessors": [
+        {
+          "id": "inheritProcessors",
+          "type": "inheritProcessors",
+          "data": {}
+        }
+      ],
+      "inheritPostProcessors": {},
+      "inheritPreProcessors": {},
+      "items": [
+        {
+          "name": "Аутентификация",
+          "id": 7216915,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 1131493,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "Регистрация",
+              "api": {
+                "id": "30618961",
+                "method": "post",
+                "path": "/api/register",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "WGINpr85lr",
+                      "name": "Content-Type",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    },
+                    {
+                      "id": "T4jjBYmlRn",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "111132634",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "email",
+                      "password"
+                    ],
+                    "x-apidog-orders": [
+                      "name",
+                      "email",
+                      "password"
+                    ]
+                  },
+                  "required": false,
+                  "additionalContent": [],
+                  "examples": [
+                    {
+                      "value": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}",
+                      "mediaType": "application/json",
+                      "description": ""
+                    }
+                  ],
+                  "oasExtensions": ""
+                },
+                "description": "Регистрация нового пользователя",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [
+                  {
+                    "id": 41670172,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "111132634",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "0J5yZym2ba",
+                          "relatedId": "WGINpr85lr",
+                          "relatedName": "Content-Type",
+                          "name": "Content-Type",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "6eJ4RONJt2",
+                          "relatedId": "T4jjBYmlRn",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "data": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}",
+                      "type": "application/json",
+                      "generateMode": "normal"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41671335,
+                    "type": "TEST_CASE",
+                    "path": "/api/register",
+                    "name": "Registration test user",
+                    "responseId": "111132634",
+                    "parameters": {
+                      "query": [],
+                      "header": [
+                        {
+                          "id": "WGINpr85lr",
+                          "relatedName": "Content-Type",
+                          "name": "Content-Type",
+                          "value": "application/json",
+                          "type": "string",
+                          "description": "",
+                          "enable": true,
+                          "isDelete": false
+                        },
+                        {
+                          "id": "T4jjBYmlRn",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "type": "string",
+                          "description": "",
+                          "enable": true,
+                          "isDelete": false
+                        }
+                      ],
+                      "cookie": [],
+                      "path": []
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\"\n}",
+                      "jsonSchema": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "email": {
+                            "type": "string"
+                          },
+                          "password": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "email",
+                          "password"
+                        ],
+                        "x-apidog-orders": [
+                          "name",
+                          "email",
+                          "password"
+                        ]
+                      },
+                      "generateMode": "normal"
+                    },
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "securityScheme": {
+                      "scopes": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  },
+                  {
+                    "id": 41672908,
+                    "type": "TEST_CASE",
+                    "path": "/api/register",
+                    "name": "Registration same email",
+                    "responseId": "111132634",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "WGINpr85lr",
+                          "relatedId": "WGINpr85lr",
+                          "name": "Content-Type",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "T4jjBYmlRn",
+                          "relatedId": "T4jjBYmlRn",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\"\n}"
+                    },
+                    "auth": {},
+                    "securityScheme": {
+                      "use": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            },
+            {
+              "name": "Вход",
+              "api": {
+                "id": "30618962",
+                "method": "post",
+                "path": "/api/login",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "poePWTHtKN",
+                      "name": "Content-Type",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    },
+                    {
+                      "id": "7pYIVcl8eV",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "106565950",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "email",
+                      "password"
+                    ],
+                    "x-apidog-orders": [
+                      "email",
+                      "password"
+                    ]
+                  },
+                  "required": false,
+                  "additionalContent": [],
+                  "examples": [
+                    {
+                      "value": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}",
+                      "mediaType": "application/json",
+                      "description": ""
+                    }
+                  ],
+                  "oasExtensions": ""
+                },
+                "description": "Вход пользователя. В ответе приходит токен доступа.",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [
+                  {
+                    "id": 41670173,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "106565950",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "F5jxzUj8wh",
+                          "relatedId": "poePWTHtKN",
+                          "relatedName": "Content-Type",
+                          "name": "Content-Type",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "E1AGfnWdMW",
+                          "relatedId": "7pYIVcl8eV",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "data": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}",
+                      "type": "application/json",
+                      "generateMode": "normal"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41672481,
+                    "type": "TEST_CASE",
+                    "path": "/api/login",
+                    "name": "Login with test user",
+                    "responseId": "106565950",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "poePWTHtKN",
+                          "relatedId": "poePWTHtKN",
+                          "name": "Content-Type",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "7pYIVcl8eV",
+                          "relatedId": "7pYIVcl8eV",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"email\": \"john@example.com\",\n    \"password\": \"password123\"\n}"
+                    },
+                    "auth": {},
+                    "securityScheme": {
+                      "use": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  },
+                  {
+                    "id": 41672904,
+                    "type": "TEST_CASE",
+                    "path": "/api/login",
+                    "name": "Login with incorect user",
+                    "responseId": "106565950",
+                    "parameters": {
+                      "query": [],
+                      "header": [
+                        {
+                          "id": "poePWTHtKN",
+                          "relatedName": "Content-Type",
+                          "name": "Content-Type",
+                          "value": "application/json",
+                          "type": "string",
+                          "description": "",
+                          "enable": true,
+                          "isDelete": false
+                        },
+                        {
+                          "id": "7pYIVcl8eV",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "type": "string",
+                          "description": "",
+                          "enable": true,
+                          "isDelete": false
+                        }
+                      ],
+                      "cookie": [],
+                      "path": []
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"email\": \"rita@example.com\",\n    \"password\": \"password123\"\n}",
+                      "jsonSchema": {
+                        "type": "object",
+                        "properties": {
+                          "email": {
+                            "type": "string"
+                          },
+                          "password": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "email",
+                          "password"
+                        ],
+                        "x-apidog-orders": [
+                          "email",
+                          "password"
+                        ]
+                      },
+                      "generateMode": "normal"
+                    },
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "securityScheme": {
+                      "scopes": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037700,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [
+                  {
+                    "executionTiming": "prerequest",
+                    "defaultEnable": true,
+                    "enable": true,
+                    "data": "if (pm.response.code === 200) {\n    const jsonData = pm.response.json();\n    if (jsonData.token) {\n        pm.collectionVariables.set('token', jsonData.token);\n    }\n}",
+                    "type": "customScript",
+                    "id": "gXkGFFoziYV0mDujbS6NtyLShWU9K78I"
+                  }
+                ],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Опросы (публичные)",
+          "id": 7216916,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 1131493,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "Список опубликованных опросов",
+              "api": {
+                "id": "30618963",
+                "method": "get",
+                "path": "/api/surveys",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "hqtmAGkw9c",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "112361586",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "Получение списка всех опубликованных опросов",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [
+                  {
+                    "id": 41670174,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "112361586",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "26sxmChjsi",
+                          "relatedId": "hqtmAGkw9c",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41672927,
+                    "type": "TEST_CASE",
+                    "path": "/api/surveys",
+                    "name": "Fetch list published surveys",
+                    "responseId": "112361586",
+                    "parameters": {
+                      "query": [],
+                      "header": [
+                        {
+                          "id": "hqtmAGkw9c",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "type": "string",
+                          "description": "",
+                          "enable": true,
+                          "isDelete": false
+                        }
+                      ],
+                      "cookie": [],
+                      "path": []
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "securityScheme": {
+                      "scopes": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            },
+            {
+              "name": "Детали опроса",
+              "api": {
+                "id": "30618964",
+                "method": "get",
+                "path": "/api/surveys/1",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "MIO7jg7qTS",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "160455090",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "oasExtensions": ""
+                },
+                "description": "Получение деталей конкретного опроса",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [
+                  {
+                    "id": 41670175,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "160455090",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "dPgMxBavdi",
+                          "relatedId": "MIO7jg7qTS",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41672965,
+                    "type": "TEST_CASE",
+                    "path": "/api/surveys/1",
+                    "name": "Fetch detail of survey1",
+                    "responseId": "160455090",
+                    "parameters": {
+                      "query": [],
+                      "header": [
+                        {
+                          "id": "MIO7jg7qTS",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "type": "string",
+                          "description": "",
+                          "enable": true,
+                          "isDelete": false
+                        }
+                      ],
+                      "cookie": [],
+                      "path": []
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "securityScheme": {
+                      "scopes": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Опросы (автор)",
+          "id": 7216917,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 1131493,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "Создать опрос",
+              "api": {
+                "id": "30618965",
+                "method": "post",
+                "path": "/api/surveys",
+                "parameters": {
+                  "query": [],
+                  "path": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "TKCzbMZ4Tn",
+                      "name": "Content-Type",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    },
+                    {
+                      "id": "lAAVokVtNv",
+                      "name": "Authorization",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "Bearer {{token}}",
+                      "type": "string"
+                    },
+                    {
+                      "id": "K569PKcrG6",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {
+                  "query": [],
+                  "body": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "responses": [
+                  {
+                    "id": "174658146",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "description"
+                    ],
+                    "x-apidog-orders": [
+                      "title",
+                      "description"
+                    ]
+                  },
+                  "required": false,
+                  "mediaType": "",
+                  "examples": [
+                    {
+                      "value": "{\n  \"title\": \"Мой опрос\",\n  \"description\": \"Описание опроса\"\n}",
+                      "mediaType": "application/json",
+                      "description": ""
+                    }
+                  ],
+                  "oasExtensions": ""
+                },
+                "description": "Создание нового опроса (статус: черновик)",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [
+                  {
+                    "id": 41670176,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "174658146",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "SHuec93heg",
+                          "relatedId": "TKCzbMZ4Tn",
+                          "relatedName": "Content-Type",
+                          "name": "Content-Type",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "gNS4k4AqHE",
+                          "relatedId": "lAAVokVtNv",
+                          "relatedName": "Authorization",
+                          "name": "Authorization",
+                          "type": "string",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "d0M6UMUFpu",
+                          "relatedId": "K569PKcrG6",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "data": "{\n  \"title\": \"Мой опрос\",\n  \"description\": \"Описание опроса\"\n}",
+                      "type": "application/json",
+                      "generateMode": "normal"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41672981,
+                    "type": "TEST_CASE",
+                    "path": "/api/surveys",
+                    "name": "Create survey 1",
+                    "responseId": "174658146",
+                    "parameters": {
+                      "query": [],
+                      "path": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "TKCzbMZ4Tn",
+                          "relatedId": "TKCzbMZ4Tn",
+                          "name": "Content-Type",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "lAAVokVtNv",
+                          "relatedId": "lAAVokVtNv",
+                          "name": "Authorization",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "K569PKcrG6",
+                          "relatedId": "K569PKcrG6",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "cookie": [],
+                      "header": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"title\": \"Мой опрос\",\n    \"description\": \"Описание опроса\"\n}"
+                    },
+                    "auth": {},
+                    "securityScheme": {
+                      "use": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            },
+            {
+              "name": "Редактировать опрос",
+              "api": {
+                "id": "30618966",
+                "method": "put",
+                "path": "/api/surveys/1",
+                "parameters": {
+                  "query": [],
+                  "path": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "kw9bb50yuv",
+                      "name": "Content-Type",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    },
+                    {
+                      "id": "x3xuHeySw1",
+                      "name": "Authorization",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "Bearer {{token}}",
+                      "type": "string"
+                    },
+                    {
+                      "id": "R45IZYSphB",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {
+                  "query": [],
+                  "body": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "responses": [
+                  {
+                    "id": "123568106",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "description"
+                    ],
+                    "x-apidog-orders": [
+                      "title",
+                      "description"
+                    ]
+                  },
+                  "required": false,
+                  "mediaType": "",
+                  "examples": [
+                    {
+                      "value": "{\n  \"title\": \"Обновлённый заголовок\",\n  \"description\": \"Обновлённое описание\"\n}",
+                      "mediaType": "application/json",
+                      "description": ""
+                    }
+                  ],
+                  "oasExtensions": ""
+                },
+                "description": "Редактирование опроса в статусе черновик",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [
+                  {
+                    "id": 41670177,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "123568106",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "2vvu01VQ9j",
+                          "relatedId": "kw9bb50yuv",
+                          "relatedName": "Content-Type",
+                          "name": "Content-Type",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "GoVmgXZtc1",
+                          "relatedId": "x3xuHeySw1",
+                          "relatedName": "Authorization",
+                          "name": "Authorization",
+                          "type": "string",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "DNALzXgglk",
+                          "relatedId": "R45IZYSphB",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "data": "{\n  \"title\": \"Обновлённый заголовок\",\n  \"description\": \"Обновлённое описание\"\n}",
+                      "type": "application/json",
+                      "generateMode": "normal"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41673582,
+                    "type": "TEST_CASE",
+                    "path": "/api/surveys/1",
+                    "name": "Edit survey 1",
+                    "responseId": "123568106",
+                    "parameters": {
+                      "query": [],
+                      "path": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "kw9bb50yuv",
+                          "relatedId": "kw9bb50yuv",
+                          "name": "Content-Type",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "x3xuHeySw1",
+                          "relatedId": "x3xuHeySw1",
+                          "name": "Authorization",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "R45IZYSphB",
+                          "relatedId": "R45IZYSphB",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "cookie": [],
+                      "header": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"title\": \"Обновлённый заголовок\",\n    \"description\": \"Обновлённое описание\"\n}"
+                    },
+                    "auth": {},
+                    "securityScheme": {
+                      "use": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            },
+            {
+              "name": "Опубликовать опрос",
+              "api": {
+                "id": "30618967",
+                "method": "post",
+                "path": "/api/surveys/1/publish",
+                "parameters": {
+                  "query": [],
+                  "path": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "stNxJKA9hY",
+                      "name": "Authorization",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "Bearer {{token}}",
+                      "type": "string"
+                    },
+                    {
+                      "id": "wnn9v37qfJ",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {
+                  "query": [],
+                  "body": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "responses": [
+                  {
+                    "id": "141560207",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "required": false,
+                  "mediaType": "",
+                  "examples": [],
+                  "oasExtensions": ""
+                },
+                "description": "Публикация опроса (перевод в статус published)",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 18,
+                "cases": [
+                  {
+                    "id": 41670178,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "141560207",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "1x8ElXLH7Y",
+                          "relatedId": "stNxJKA9hY",
+                          "relatedName": "Authorization",
+                          "name": "Authorization",
+                          "type": "string",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "cBBG9paGlR",
+                          "relatedId": "wnn9v37qfJ",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41673586,
+                    "type": "TEST_CASE",
+                    "path": "/api/surveys/1/publish",
+                    "name": "Publish survey 1",
+                    "responseId": "141560207",
+                    "parameters": {
+                      "query": [],
+                      "header": [
+                        {
+                          "id": "stNxJKA9hY",
+                          "relatedName": "Authorization",
+                          "name": "Authorization",
+                          "value": "Bearer {{token}}",
+                          "type": "string",
+                          "description": "",
+                          "enable": true,
+                          "isDelete": false
+                        },
+                        {
+                          "id": "wnn9v37qfJ",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "type": "string",
+                          "description": "",
+                          "enable": true,
+                          "isDelete": false
+                        }
+                      ],
+                      "cookie": [],
+                      "path": []
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "auth": {
+                      "type": "noauth"
+                    },
+                    "securityScheme": {
+                      "scopes": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            },
+            {
+              "name": "Закрыть опрос",
+              "api": {
+                "id": "30618968",
+                "method": "post",
+                "path": "/api/surveys/1/close",
+                "parameters": {
+                  "query": [],
+                  "path": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "gOYpXgNYzY",
+                      "name": "Authorization",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "Bearer {{token}}",
+                      "type": "string"
+                    },
+                    {
+                      "id": "kUfdBT0rxC",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {
+                  "query": [],
+                  "body": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "responses": [
+                  {
+                    "id": "186063558",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "required": false,
+                  "mediaType": "",
+                  "examples": [],
+                  "oasExtensions": ""
+                },
+                "description": "Закрытие опроса (перевод в статус closed)",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 24,
+                "cases": [
+                  {
+                    "id": 41670179,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "186063558",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "gGYjUV4bF0",
+                          "relatedId": "gOYpXgNYzY",
+                          "relatedName": "Authorization",
+                          "name": "Authorization",
+                          "type": "string",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "nz0S3Z0dPM",
+                          "relatedId": "kUfdBT0rxC",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41673592,
+                    "type": "TEST_CASE",
+                    "path": "/api/surveys/1/close",
+                    "name": "Close survey 1",
+                    "responseId": "186063558",
+                    "parameters": {
+                      "query": [],
+                      "path": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "gOYpXgNYzY",
+                          "relatedId": "gOYpXgNYzY",
+                          "name": "Authorization",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "kUfdBT0rxC",
+                          "relatedId": "kUfdBT0rxC",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "cookie": [],
+                      "header": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": ""
+                    },
+                    "auth": {},
+                    "securityScheme": {
+                      "use": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            },
+            {
+              "name": "Удалить опрос",
+              "api": {
+                "id": "30618969",
+                "method": "delete",
+                "path": "/api/surveys/1",
+                "parameters": {
+                  "query": [],
+                  "path": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "lo55zYQRvQ",
+                      "name": "Authorization",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "Bearer {{token}}",
+                      "type": "string"
+                    },
+                    {
+                      "id": "I89NIi0lEK",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {
+                  "query": [],
+                  "body": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "responses": [
+                  {
+                    "id": "114790792",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "required": false,
+                  "mediaType": "",
+                  "examples": [],
+                  "oasExtensions": ""
+                },
+                "description": "Удаление опроса",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 30,
+                "cases": [
+                  {
+                    "id": 41670180,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "114790792",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "ddgYFgGXlQ",
+                          "relatedId": "lo55zYQRvQ",
+                          "relatedName": "Authorization",
+                          "name": "Authorization",
+                          "type": "string",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "oN4TugbXMA",
+                          "relatedId": "I89NIi0lEK",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41673593,
+                    "type": "TEST_CASE",
+                    "path": "/api/surveys/1",
+                    "name": "Delete survey 1",
+                    "responseId": "114790792",
+                    "parameters": {
+                      "query": [],
+                      "path": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "lo55zYQRvQ",
+                          "relatedId": "lo55zYQRvQ",
+                          "name": "Authorization",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "I89NIi0lEK",
+                          "relatedId": "I89NIi0lEK",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "cookie": [],
+                      "header": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": ""
+                    },
+                    "auth": {},
+                    "securityScheme": {
+                      "use": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Вопросы",
+          "id": 7216918,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 1131493,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "Добавить вопрос",
+              "api": {
+                "id": "30618970",
+                "method": "post",
+                "path": "/api/surveys/1/questions",
+                "parameters": {
+                  "query": [],
+                  "path": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "YbynYWHuKB",
+                      "name": "Content-Type",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    },
+                    {
+                      "id": "1oA6dVWAFP",
+                      "name": "Authorization",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "Bearer {{token}}",
+                      "type": "string"
+                    },
+                    {
+                      "id": "Hzw0TsKCNQ",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {
+                  "query": [],
+                  "body": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "responses": [
+                  {
+                    "id": "111815451",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "text": {
+                        "type": "string"
+                      },
+                      "order": {
+                        "type": "integer"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "text",
+                      "order",
+                      "required"
+                    ],
+                    "x-apidog-orders": [
+                      "type",
+                      "text",
+                      "order",
+                      "required"
+                    ]
+                  },
+                  "required": false,
+                  "mediaType": "",
+                  "examples": [
+                    {
+                      "value": "{\n  \"type\": \"single_choice\",\n  \"text\": \"Ваш любимый цвет?\",\n  \"order\": 1,\n  \"required\": true\n}",
+                      "mediaType": "application/json",
+                      "description": ""
+                    }
+                  ],
+                  "oasExtensions": ""
+                },
+                "description": "Добавление вопроса к опросу. Типы: single_choice, multiple_choice, text_answer",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [
+                  {
+                    "id": 41670181,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "111815451",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "tTFB01Tas0",
+                          "relatedId": "YbynYWHuKB",
+                          "relatedName": "Content-Type",
+                          "name": "Content-Type",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "4DvCVVutqc",
+                          "relatedId": "1oA6dVWAFP",
+                          "relatedName": "Authorization",
+                          "name": "Authorization",
+                          "type": "string",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "krNm70NUjF",
+                          "relatedId": "Hzw0TsKCNQ",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "data": "{\n  \"type\": \"single_choice\",\n  \"text\": \"Ваш любимый цвет?\",\n  \"order\": 1,\n  \"required\": true\n}",
+                      "type": "application/json",
+                      "generateMode": "normal"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41673596,
+                    "type": "TEST_CASE",
+                    "path": "/api/surveys/1/questions",
+                    "name": "Add question 1",
+                    "responseId": "111815451",
+                    "parameters": {
+                      "query": [],
+                      "path": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "YbynYWHuKB",
+                          "relatedId": "YbynYWHuKB",
+                          "name": "Content-Type",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "1oA6dVWAFP",
+                          "relatedId": "1oA6dVWAFP",
+                          "name": "Authorization",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "Hzw0TsKCNQ",
+                          "relatedId": "Hzw0TsKCNQ",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "cookie": [],
+                      "header": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"type\": \"single_choice\",\n    \"text\": \"Ваш любимый цвет?\",\n    \"order\": 1,\n    \"required\": true\n}"
+                    },
+                    "auth": {},
+                    "securityScheme": {
+                      "use": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            },
+            {
+              "name": "Редактировать вопрос",
+              "api": {
+                "id": "30618971",
+                "method": "put",
+                "path": "/api/questions/1",
+                "parameters": {
+                  "query": [],
+                  "path": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "KwujtfVNfv",
+                      "name": "Content-Type",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    },
+                    {
+                      "id": "enTYdwqiHS",
+                      "name": "Authorization",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "Bearer {{token}}",
+                      "type": "string"
+                    },
+                    {
+                      "id": "zyCY2mNjAu",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {
+                  "query": [],
+                  "body": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "responses": [
+                  {
+                    "id": "143865922",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "type": "object",
+                    "properties": {
+                      "text": {
+                        "type": "string"
+                      },
+                      "order": {
+                        "type": "integer"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "text",
+                      "order",
+                      "required"
+                    ],
+                    "x-apidog-orders": [
+                      "text",
+                      "order",
+                      "required"
+                    ]
+                  },
+                  "required": false,
+                  "mediaType": "",
+                  "examples": [
+                    {
+                      "value": "{\n  \"text\": \"Обновлённый текст вопроса\",\n  \"order\": 2,\n  \"required\": false\n}",
+                      "mediaType": "application/json",
+                      "description": ""
+                    }
+                  ],
+                  "oasExtensions": ""
+                },
+                "description": "Редактирование вопроса",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [
+                  {
+                    "id": 41670182,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "143865922",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "IhO9qhMS5P",
+                          "relatedId": "KwujtfVNfv",
+                          "relatedName": "Content-Type",
+                          "name": "Content-Type",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "s2PC1JBVOi",
+                          "relatedId": "enTYdwqiHS",
+                          "relatedName": "Authorization",
+                          "name": "Authorization",
+                          "type": "string",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "omFGn9LTDo",
+                          "relatedId": "zyCY2mNjAu",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "data": "{\n  \"text\": \"Обновлённый текст вопроса\",\n  \"order\": 2,\n  \"required\": false\n}",
+                      "type": "application/json",
+                      "generateMode": "normal"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41673606,
+                    "type": "TEST_CASE",
+                    "path": "/api/questions/1",
+                    "name": "Edit question 1",
+                    "responseId": "143865922",
+                    "parameters": {
+                      "query": [],
+                      "path": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "KwujtfVNfv",
+                          "relatedId": "KwujtfVNfv",
+                          "name": "Content-Type",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "enTYdwqiHS",
+                          "relatedId": "enTYdwqiHS",
+                          "name": "Authorization",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "zyCY2mNjAu",
+                          "relatedId": "zyCY2mNjAu",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "cookie": [],
+                      "header": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"text\": \"Обновлённый текст вопроса\",\n    \"order\": 2,\n    \"required\": false\n}"
+                    },
+                    "auth": {},
+                    "securityScheme": {
+                      "use": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            },
+            {
+              "name": "Удалить вопрос",
+              "api": {
+                "id": "30618972",
+                "method": "delete",
+                "path": "/api/questions/1",
+                "parameters": {
+                  "query": [],
+                  "path": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "BpOiHgvYvN",
+                      "name": "Authorization",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "Bearer {{token}}",
+                      "type": "string"
+                    },
+                    {
+                      "id": "hdsOeqiSdG",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {
+                  "query": [],
+                  "body": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "responses": [
+                  {
+                    "id": "128494955",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "required": false,
+                  "mediaType": "",
+                  "examples": [],
+                  "oasExtensions": ""
+                },
+                "description": "Удаление вопроса",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 18,
+                "cases": [
+                  {
+                    "id": 41670183,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "128494955",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "MetRGaAnF6",
+                          "relatedId": "BpOiHgvYvN",
+                          "relatedName": "Authorization",
+                          "name": "Authorization",
+                          "type": "string",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "gnAhaOPzbn",
+                          "relatedId": "hdsOeqiSdG",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41673611,
+                    "type": "TEST_CASE",
+                    "path": "/api/questions/1",
+                    "name": "Delete question 1",
+                    "responseId": "128494955",
+                    "parameters": {
+                      "query": [],
+                      "path": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "BpOiHgvYvN",
+                          "relatedId": "BpOiHgvYvN",
+                          "name": "Authorization",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "hdsOeqiSdG",
+                          "relatedId": "hdsOeqiSdG",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "cookie": [],
+                      "header": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": ""
+                    },
+                    "auth": {},
+                    "securityScheme": {
+                      "use": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Варианты ответов",
+          "id": 7216919,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 1131493,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "Добавить вариант ответа",
+              "api": {
+                "id": "30618973",
+                "method": "post",
+                "path": "/api/questions/1/options",
+                "parameters": {
+                  "query": [],
+                  "path": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "Ap4rksq4aS",
+                      "name": "Content-Type",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    },
+                    {
+                      "id": "BrVwcXFK2m",
+                      "name": "Authorization",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "Bearer {{token}}",
+                      "type": "string"
+                    },
+                    {
+                      "id": "OYauAki0SP",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {
+                  "query": [],
+                  "body": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "responses": [
+                  {
+                    "id": "149375811",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "type": "object",
+                    "properties": {
+                      "text": {
+                        "type": "string"
+                      },
+                      "order": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "text",
+                      "order"
+                    ],
+                    "x-apidog-orders": [
+                      "text",
+                      "order"
+                    ]
+                  },
+                  "required": false,
+                  "mediaType": "",
+                  "examples": [
+                    {
+                      "value": "{\n  \"text\": \"Красный\",\n  \"order\": 1\n}",
+                      "mediaType": "application/json",
+                      "description": ""
+                    }
+                  ],
+                  "oasExtensions": ""
+                },
+                "description": "Добавление варианта ответа для вопросов с выбором",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [
+                  {
+                    "id": 41670184,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "149375811",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "ZR2SCumPp1",
+                          "relatedId": "Ap4rksq4aS",
+                          "relatedName": "Content-Type",
+                          "name": "Content-Type",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "v00tDDSx7L",
+                          "relatedId": "BrVwcXFK2m",
+                          "relatedName": "Authorization",
+                          "name": "Authorization",
+                          "type": "string",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "Hku7Z7qfBD",
+                          "relatedId": "OYauAki0SP",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "data": "{\n  \"text\": \"Красный\",\n  \"order\": 1\n}",
+                      "type": "application/json",
+                      "generateMode": "normal"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41673613,
+                    "type": "TEST_CASE",
+                    "path": "/api/questions/1/options",
+                    "name": "Add vbariant",
+                    "responseId": "149375811",
+                    "parameters": {
+                      "query": [],
+                      "path": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "Ap4rksq4aS",
+                          "relatedId": "Ap4rksq4aS",
+                          "name": "Content-Type",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "BrVwcXFK2m",
+                          "relatedId": "BrVwcXFK2m",
+                          "name": "Authorization",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "OYauAki0SP",
+                          "relatedId": "OYauAki0SP",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "cookie": [],
+                      "header": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"text\": \"Красный\",\n    \"order\": 1\n}"
+                    },
+                    "auth": {},
+                    "securityScheme": {
+                      "use": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            },
+            {
+              "name": "Редактировать вариант",
+              "api": {
+                "id": "30618974",
+                "method": "put",
+                "path": "/api/options/1",
+                "parameters": {
+                  "query": [],
+                  "path": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "ZiuDW2Oyuj",
+                      "name": "Content-Type",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    },
+                    {
+                      "id": "QM0iz3Tas8",
+                      "name": "Authorization",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "Bearer {{token}}",
+                      "type": "string"
+                    },
+                    {
+                      "id": "YoZ720CS74",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {
+                  "query": [],
+                  "body": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "responses": [
+                  {
+                    "id": "167398662",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "type": "object",
+                    "properties": {
+                      "text": {
+                        "type": "string"
+                      },
+                      "order": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "text",
+                      "order"
+                    ],
+                    "x-apidog-orders": [
+                      "text",
+                      "order"
+                    ]
+                  },
+                  "required": false,
+                  "mediaType": "",
+                  "examples": [
+                    {
+                      "value": "{\n  \"text\": \"Обновлённый вариант\",\n  \"order\": 2\n}",
+                      "mediaType": "application/json",
+                      "description": ""
+                    }
+                  ],
+                  "oasExtensions": ""
+                },
+                "description": "Редактирование варианта ответа",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [
+                  {
+                    "id": 41670185,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "167398662",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "rcAHh5XtPa",
+                          "relatedId": "ZiuDW2Oyuj",
+                          "relatedName": "Content-Type",
+                          "name": "Content-Type",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "grgCMgZfEc",
+                          "relatedId": "QM0iz3Tas8",
+                          "relatedName": "Authorization",
+                          "name": "Authorization",
+                          "type": "string",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "Aub82URkfi",
+                          "relatedId": "YoZ720CS74",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "data": "{\n  \"text\": \"Обновлённый вариант\",\n  \"order\": 2\n}",
+                      "type": "application/json",
+                      "generateMode": "normal"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41673614,
+                    "type": "TEST_CASE",
+                    "path": "/api/options/1",
+                    "name": "Edit variant",
+                    "responseId": "167398662",
+                    "parameters": {
+                      "query": [],
+                      "path": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "ZiuDW2Oyuj",
+                          "relatedId": "ZiuDW2Oyuj",
+                          "name": "Content-Type",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "QM0iz3Tas8",
+                          "relatedId": "QM0iz3Tas8",
+                          "name": "Authorization",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "YoZ720CS74",
+                          "relatedId": "YoZ720CS74",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "cookie": [],
+                      "header": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"text\": \"Обновлённый вариант\",\n    \"order\": 2\n}"
+                    },
+                    "auth": {},
+                    "securityScheme": {
+                      "use": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            },
+            {
+              "name": "Удалить вариант",
+              "api": {
+                "id": "30618975",
+                "method": "delete",
+                "path": "/api/options/1",
+                "parameters": {
+                  "query": [],
+                  "path": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "Qwj4kEPEFF",
+                      "name": "Authorization",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "Bearer {{token}}",
+                      "type": "string"
+                    },
+                    {
+                      "id": "QRjCA2aQ79",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {
+                  "query": [],
+                  "body": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "responses": [
+                  {
+                    "id": "133443147",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "required": false,
+                  "mediaType": "",
+                  "examples": [],
+                  "oasExtensions": ""
+                },
+                "description": "Удаление варианта ответа",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 18,
+                "cases": [
+                  {
+                    "id": 41670186,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "133443147",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "KNK3cqLtpv",
+                          "relatedId": "Qwj4kEPEFF",
+                          "relatedName": "Authorization",
+                          "name": "Authorization",
+                          "type": "string",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "5xYMXkW2lI",
+                          "relatedId": "QRjCA2aQ79",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41673646,
+                    "type": "TEST_CASE",
+                    "path": "/api/options/1",
+                    "name": "Delete variant",
+                    "responseId": "133443147",
+                    "parameters": {
+                      "query": [],
+                      "path": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "Qwj4kEPEFF",
+                          "relatedId": "Qwj4kEPEFF",
+                          "name": "Authorization",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "QRjCA2aQ79",
+                          "relatedId": "QRjCA2aQ79",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "cookie": [],
+                      "header": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": ""
+                    },
+                    "auth": {},
+                    "securityScheme": {
+                      "use": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Прохождение опросов",
+          "id": 7216920,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 1131493,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "Пройти опрос",
+              "api": {
+                "id": "30618976",
+                "method": "post",
+                "path": "/api/surveys/1/respond",
+                "parameters": {
+                  "query": [],
+                  "path": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "E0BS7ytVp2",
+                      "name": "Content-Type",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    },
+                    {
+                      "id": "fglfbQZIUV",
+                      "name": "Authorization",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "Bearer {{token}}",
+                      "type": "string"
+                    },
+                    {
+                      "id": "v35PNRhV2w",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {
+                  "query": [],
+                  "body": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "responses": [
+                  {
+                    "id": "136060102",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "type": "object",
+                    "properties": {
+                      "answers": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "question_id": {
+                              "type": "integer"
+                            },
+                            "option_id": {
+                              "type": "integer"
+                            },
+                            "option_ids": {
+                              "type": "array",
+                              "items": {
+                                "type": "integer"
+                              }
+                            },
+                            "text_value": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "question_id"
+                          ],
+                          "x-apidog-orders": [
+                            "question_id",
+                            "option_id",
+                            "option_ids",
+                            "text_value"
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "answers"
+                    ],
+                    "x-apidog-orders": [
+                      "answers"
+                    ]
+                  },
+                  "required": false,
+                  "mediaType": "",
+                  "examples": [
+                    {
+                      "value": "{\n  \"answers\": [\n    {\n      \"question_id\": 1,\n      \"option_id\": 1\n    },\n    {\n      \"question_id\": 2,\n      \"option_ids\": [1, 3]\n    },\n    {\n      \"question_id\": 3,\n      \"text_value\": \"Текстовый ответ\"\n    }\n  ]\n}",
+                      "mediaType": "application/json",
+                      "description": ""
+                    }
+                  ],
+                  "oasExtensions": ""
+                },
+                "description": "Отправка ответов на опрос. Один респондент может пройти опрос только один раз.",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [
+                  {
+                    "id": 41670187,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "136060102",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "elPItQXZew",
+                          "relatedId": "E0BS7ytVp2",
+                          "relatedName": "Content-Type",
+                          "name": "Content-Type",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "z42omHDFxP",
+                          "relatedId": "fglfbQZIUV",
+                          "relatedName": "Authorization",
+                          "name": "Authorization",
+                          "type": "string",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "2bkwPwEwQm",
+                          "relatedId": "v35PNRhV2w",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "data": "{\n  \"answers\": [\n    {\n      \"question_id\": 1,\n      \"option_id\": 1\n    },\n    {\n      \"question_id\": 2,\n      \"option_ids\": [1, 3]\n    },\n    {\n      \"question_id\": 3,\n      \"text_value\": \"Текстовый ответ\"\n    }\n  ]\n}",
+                      "type": "application/json",
+                      "generateMode": "normal"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41673647,
+                    "type": "TEST_CASE",
+                    "path": "/api/surveys/1/respond",
+                    "name": "Complete the survey 1",
+                    "responseId": "136060102",
+                    "parameters": {
+                      "query": [],
+                      "path": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "E0BS7ytVp2",
+                          "relatedId": "E0BS7ytVp2",
+                          "name": "Content-Type",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "fglfbQZIUV",
+                          "relatedId": "fglfbQZIUV",
+                          "name": "Authorization",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "v35PNRhV2w",
+                          "relatedId": "v35PNRhV2w",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "cookie": [],
+                      "header": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"answers\": [\n        {\n            \"question_id\": 1,\n            \"option_id\": 1,\n            \"option_ids\": [],\n            \"text_value\": \"\"\n        },\n        {\n            \"question_id\": 1,\n            \"option_id\": 1,\n            \"option_ids\": [],\n            \"text_value\": \"\"\n        }\n    ]\n}"
+                    },
+                    "auth": {},
+                    "securityScheme": {
+                      "use": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Аналитика",
+          "id": 7216921,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 1131493,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "Статистика по опросу",
+              "api": {
+                "id": "30618977",
+                "method": "get",
+                "path": "/api/surveys/1/results",
+                "parameters": {
+                  "query": [],
+                  "path": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "urK11hnoRu",
+                      "name": "Authorization",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "Bearer {{token}}",
+                      "type": "string"
+                    },
+                    {
+                      "id": "YLD0bZN0rs",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {
+                  "query": [],
+                  "body": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "responses": [
+                  {
+                    "id": "148405962",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "required": false,
+                  "mediaType": "",
+                  "examples": [],
+                  "oasExtensions": ""
+                },
+                "description": "Получение статистики: количество респондентов, проценты по вариантам ответов",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [
+                  {
+                    "id": 41670188,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "148405962",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "hhtahKxe49",
+                          "relatedId": "urK11hnoRu",
+                          "relatedName": "Authorization",
+                          "name": "Authorization",
+                          "type": "string",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "MQWtL8MWiR",
+                          "relatedId": "YLD0bZN0rs",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41673653,
+                    "type": "TEST_CASE",
+                    "path": "/api/surveys/1/results",
+                    "name": "Statistic of survey 1",
+                    "responseId": "148405962",
+                    "parameters": {
+                      "query": [],
+                      "path": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "urK11hnoRu",
+                          "relatedId": "urK11hnoRu",
+                          "name": "Authorization",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "YLD0bZN0rs",
+                          "relatedId": "YLD0bZN0rs",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "cookie": [],
+                      "header": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": ""
+                    },
+                    "auth": {},
+                    "securityScheme": {
+                      "use": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            },
+            {
+              "name": "Экспорт результатов (JSON)",
+              "api": {
+                "id": "30618978",
+                "method": "get",
+                "path": "/api/surveys/1/results/export",
+                "parameters": {
+                  "query": [],
+                  "path": [],
+                  "cookie": [],
+                  "header": [
+                    {
+                      "id": "I0ZCzPFpyR",
+                      "name": "Authorization",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "Bearer {{token}}",
+                      "type": "string"
+                    },
+                    {
+                      "id": "aJITQ5IUd2",
+                      "name": "Accept",
+                      "required": true,
+                      "enable": true,
+                      "description": "",
+                      "example": "application/json",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {
+                  "query": [],
+                  "body": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "responses": [
+                  {
+                    "id": "121231652",
+                    "code": 200,
+                    "name": "",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apidog-orders": []
+                    },
+                    "itemSchema": {},
+                    "description": "",
+                    "contentType": "json",
+                    "mediaType": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "required": false,
+                  "mediaType": "",
+                  "examples": [],
+                  "oasExtensions": ""
+                },
+                "description": "Экспорт результатов опроса в формате JSON",
+                "tags": [],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [
+                  {
+                    "id": 41670189,
+                    "type": "DEBUG_CASE",
+                    "path": null,
+                    "name": "Success",
+                    "responseId": "121231652",
+                    "parameters": {
+                      "path": [],
+                      "query": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "sVREe8WFJo",
+                          "relatedId": "I0ZCzPFpyR",
+                          "relatedName": "Authorization",
+                          "name": "Authorization",
+                          "type": "string",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        },
+                        {
+                          "id": "H01LtW6ZMu",
+                          "relatedId": "aJITQ5IUd2",
+                          "relatedName": "Accept",
+                          "name": "Accept",
+                          "type": "string",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "isDelete": false
+                        }
+                      ]
+                    },
+                    "commonParameters": {},
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none"
+                    },
+                    "auth": {},
+                    "securityScheme": {},
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 0,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    },
+                    "inheritPreProcessors": {
+                      "enable": {},
+                      "defaultEnable": {}
+                    }
+                  },
+                  {
+                    "id": 41673654,
+                    "type": "TEST_CASE",
+                    "path": "/api/surveys/1/results/export",
+                    "name": "Completed survey response 1",
+                    "responseId": "121231652",
+                    "parameters": {
+                      "query": [],
+                      "path": [],
+                      "cookie": [],
+                      "header": [
+                        {
+                          "id": "I0ZCzPFpyR",
+                          "relatedId": "I0ZCzPFpyR",
+                          "name": "Authorization",
+                          "value": "Bearer {{token}}",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        },
+                        {
+                          "id": "aJITQ5IUd2",
+                          "relatedId": "aJITQ5IUd2",
+                          "name": "Accept",
+                          "value": "application/json",
+                          "enable": true,
+                          "description": "",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "cookie": [],
+                      "header": []
+                    },
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": ""
+                    },
+                    "auth": {},
+                    "securityScheme": {
+                      "use": {}
+                    },
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {}
+                    },
+                    "requestResult": null,
+                    "visibility": "INHERITED",
+                    "moduleId": 1131493,
+                    "categoryId": 1037699,
+                    "tagIds": [],
+                    "apiTestDataList": [],
+                    "preProcessors": [],
+                    "postProcessors": [],
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessors": {}
+                  }
+                ],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 1131493,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                },
+                "inheritPreProcessors": {
+                  "enable": {},
+                  "defaultEnable": {}
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "socketCollection": [],
+  "docCollection": [],
+  "webSocketCollection": [],
+  "socketIOCollection": [],
+  "mcpClientCollection": [],
+  "responseCollection": [
+    {
+      "_databaseId": 1389981,
+      "updatedAt": "2026-03-12T11:52:41.000Z",
+      "name": "Root",
+      "type": "root",
+      "children": [],
+      "moduleId": 1131474,
+      "parentId": 0,
+      "id": 1389981,
+      "ordering": [],
+      "items": []
+    },
+    {
+      "_databaseId": 1390000,
+      "updatedAt": "2026-03-12T12:01:56.000Z",
+      "name": "Root",
+      "type": "root",
+      "children": [],
+      "moduleId": 1131493,
+      "parentId": 0,
+      "id": 1390000,
+      "ordering": [],
+      "items": []
+    }
+  ],
+  "schemaCollection": [
+    {
+      "id": 3174115,
+      "name": "Root",
+      "visibility": "SHARED",
+      "moduleId": 1131474,
+      "items": [],
+      "ordering": []
+    },
+    {
+      "id": 3174145,
+      "name": "Root",
+      "visibility": "SHARED",
+      "moduleId": 1131493,
+      "items": [],
+      "ordering": []
+    }
+  ],
+  "securitySchemeCollection": [
+    {
+      "id": 1169493,
+      "moduleId": 1131474,
+      "name": "Root",
+      "items": [],
+      "ordering": []
+    },
+    {
+      "id": 1167670,
+      "moduleId": 1131493,
+      "name": "Root",
+      "items": [],
+      "ordering": []
+    }
+  ],
+  "oasComponentCollection": [],
+  "requestCollection": [
+    {
+      "name": "Root",
+      "children": [],
+      "ordering": [
+        "requestFolder.9535959"
+      ],
+      "items": []
+    }
+  ],
+  "apiTestCaseCollection": [
+    {
+      "id": 0,
+      "name": "Root",
+      "children": [],
+      "items": []
+    }
+  ],
+  "testCaseReferences": [],
+  "environments": [],
+  "commonScripts": [],
+  "databaseConnections": [],
+  "globalVariables": [
+    {
+      "id": "1225964",
+      "variables": []
+    }
+  ],
+  "commonParameters": null,
+  "customFunctions": [],
+  "projectTestCaseCategories": [
+    {
+      "id": 1037699,
+      "name": "Positive",
+      "description": "Valid inputs and correct expected results, representing typical usage."
+    },
+    {
+      "id": 1037700,
+      "name": "Negative",
+      "description": "Negative, invalid inputs such as missing fields, wrong types, unsupported methods, etc."
+    },
+    {
+      "id": 1037701,
+      "name": "Boundary",
+      "description": "Extreme or edge conditions, such as maximum string length, empty values, zero, null, etc."
+    },
+    {
+      "id": 1037702,
+      "name": "Security",
+      "description": "Test cases that may expose API security risks."
+    },
+    {
+      "id": 1037703,
+      "name": "Other",
+      "description": "Test cases not classified under existing categories."
+    }
+  ],
+  "projectTestCaseTags": [
+    {
+      "id": 4114406,
+      "name": "Required Fields Only",
+      "description": "Send only the required fields with valid values, omitting all optional fields, to test minimal valid requests."
+    },
+    {
+      "id": 4114407,
+      "name": "Valid Semantic",
+      "description": "Use values that are syntactically correct and also make sense in the business logic or domain context."
+    },
+    {
+      "id": 4114408,
+      "name": "Enum Combination Coverage",
+      "description": "For all enum-type parameters, apply orthogonal design to systematically construct test case combinations of parameters and their enum values, dedicated to testing enum coverage."
+    },
+    {
+      "id": 4114409,
+      "name": "Other Positive Case",
+      "description": "Provide realistic and valid inputs that match the API specification, producing the correct and expected result."
+    },
+    {
+      "id": 4114410,
+      "name": "Missing Required Fields",
+      "description": "Omit one or more required fields in the request body or parameters."
+    },
+    {
+      "id": 4114411,
+      "name": "Invalid Values",
+      "description": "Provide values that are within the correct type and format, but logically invalid for the field."
+    },
+    {
+      "id": 4114412,
+      "name": "Type Errors",
+      "description": "Use values with incorrect data types, such as sending a string instead of an integer."
+    },
+    {
+      "id": 4114413,
+      "name": "Format Errors",
+      "description": "Provide values in an incorrect format, e.g., wrong date pattern, malformed email address."
+    },
+    {
+      "id": 4114414,
+      "name": "Semantic Errors",
+      "description": "Use syntactically correct and properly formatted values that are logically impossible or violate domain rules."
+    },
+    {
+      "id": 4114415,
+      "name": "Other Negative Case",
+      "description": "Provide invalid or unexpected inputs that should trigger error handling or rejection by the API."
+    },
+    {
+      "id": 4114416,
+      "name": "Null",
+      "description": "Must be the JSON literal `null` (not empty, not \"null\")."
+    },
+    {
+      "id": 4114417,
+      "name": "Zero",
+      "description": "Must be the numeric literal 0."
+    },
+    {
+      "id": 4114418,
+      "name": "Empty Values",
+      "description": "Must be \"\"."
+    },
+    {
+      "id": 4114419,
+      "name": "Max Values",
+      "description": "Provide the exact minimum and maximum allowed values for numeric or date fields."
+    },
+    {
+      "id": 4114420,
+      "name": "Min Values",
+      "description": "Provide the exact minimum and maximum allowed values for numeric or date fields."
+    },
+    {
+      "id": 4114421,
+      "name": "Overflow",
+      "description": "Provide values just beyond the allowed minimum or maximum boundaries."
+    },
+    {
+      "id": 4114422,
+      "name": "Underflow",
+      "description": "Provide values just beyond the allowed minimum or maximum boundaries."
+    },
+    {
+      "id": 4114423,
+      "name": "Overly Long Strings",
+      "description": "Provide strings longer than the maximum allowed length, or shorter than the minimum required length."
+    },
+    {
+      "id": 4114424,
+      "name": "Overly Short Strings",
+      "description": "Provide strings longer than the maximum allowed length, or shorter than the minimum required length."
+    },
+    {
+      "id": 4114425,
+      "name": "Broken Object Level Authorization",
+      "description": "Users access or manipulate data objects without proper authorization."
+    },
+    {
+      "id": 4114426,
+      "name": "Access Control",
+      "description": "Restricting resources and actions users can access based on roles, permissions, or attributes."
+    },
+    {
+      "id": 4114427,
+      "name": "Auth Failures",
+      "description": "Authentication is weak, misconfigured, or bypassed, allowing unauthorized access."
+    },
+    {
+      "id": 4114428,
+      "name": "SQL Injection",
+      "description": "Insert malicious SQL code into input fields to test for SQL injection vulnerabilities."
+    },
+    {
+      "id": 4114429,
+      "name": "XSS Injection",
+      "description": "Inject JavaScript or HTML tags to test for cross-site scripting vulnerabilities."
+    },
+    {
+      "id": 4114430,
+      "name": "Fuzzy Input",
+      "description": "Send large or randomly generated payloads to test input validation and stability."
+    },
+    {
+      "id": 4114431,
+      "name": "Command Injection",
+      "description": "Insert shell commands into inputs to test for command execution vulnerabilities."
+    },
+    {
+      "id": 4114432,
+      "name": "JSON Injection",
+      "description": "Insert malicious or unexpected JSON structures to test parsing and validation."
+    },
+    {
+      "id": 4114433,
+      "name": "NoSQL Injection",
+      "description": "Provide NoSQL-specific malicious queries or operators to test for injection vulnerabilities."
+    },
+    {
+      "id": 4114434,
+      "name": "Other",
+      "description": "Test cases not classified under existing categories."
+    }
+  ],
+  "projectAssociations": [],
+  "moduleSettings": [
+    {
+      "id": "1131474",
+      "name": "Default module",
+      "description": "",
+      "moduleVariables": [],
+      "openApiInfo": {}
+    },
+    {
+      "id": "1131493",
+      "name": "Survey API",
+      "description": "Коллекция запросов для API сервиса опросов и голосований\n\nВажно: Все запросы включают заголовок Accept: application/json",
+      "moduleVariables": [
+        {
+          "name": "base_url",
+          "value": "http://localhost:8000/api",
+          "description": "",
+          "isBindInitial": true,
+          "initialValue": "http://localhost:8000/api",
+          "isSync": true
+        },
+        {
+          "name": "token",
+          "value": "",
+          "description": "",
+          "isBindInitial": false,
+          "initialValue": "",
+          "isSync": true
+        }
+      ],
+      "openApiInfo": {}
+    }
+  ]
+}
