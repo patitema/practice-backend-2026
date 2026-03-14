@@ -5,249 +5,259 @@
     "description": "Полная коллекция тестов для Survey API с учётом роли admin и всех изменений",
     "version": "1.0.0"
   },
-  "tags": [],
+  "tags": [
+    {
+      "name": "Authentication"
+    },
+    {
+      "name": "Surveys"
+    },
+    {
+      "name": "Questions"
+    },
+    {
+      "name": "Options"
+    },
+    {
+      "name": "Responses"
+    },
+    {
+      "name": "Results"
+    }
+  ],
   "paths": {
-    "/api/register": {
+    "/register": {
       "post": {
-        "summary": "Register - Validation Error",
+        "summary": "Регистрация пользователя",
         "deprecated": false,
-        "description": "Проверка валидации данных при регистрации",
-        "tags": [],
-        "parameters": [
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          }
+        "description": "Регистрирует нового пользователя и автоматически выполняет вход.\n\n### Требования к паролю\n\n- Минимум 8 символов\n- Рекомендуется использовать буквы и цифры\n\n### Ответ\n\nУспешный ответ содержит JWT-токен и данные пользователя.\n\n### Примеры\n\n**Успешная регистрация:**\n```json\n{\n  \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...\",\n  \"user\": {\n    \"id\": 1,\n    \"name\": \"John Doe\",\n    \"email\": \"user@example.com\",\n    \"role\": 2\n  }\n}\n```\n\n**Ошибка валидации (422):**\n```json\n{\n  \"message\": \"The email field must be a valid email address.\",\n  \"errors\": {\n    \"email\": [\"The email field must be a valid email address.\"]\n  }\n}\n```",
+        "tags": [
+          "Authentication"
         ],
+        "parameters": [],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "email": {
-                    "type": "string"
-                  },
-                  "password": {
-                    "type": "string"
-                  }
-                },
                 "required": [
                   "email",
                   "password"
-                ]
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Имя пользователя (необязательно)",
+                    "example": "John Doe"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Уникальный email адрес",
+                    "example": "user@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "minLength": 8,
+                    "description": "Пароль (минимум 8 символов)",
+                    "example": "password123"
+                  }
+                }
               },
               "example": {
-                "email": "invalid-email",
-                "password": "123"
+                "name": "John Doe",
+                "email": "user@example.com",
+                "password": "password123"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
-          "200": {
-            "description": "",
+          "201": {
+            "description": "Пользователь успешно зарегистрирован",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "description": "JWT-токен для аутентификации"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "role": {
+                          "type": "integer",
+                          "description": "1=author, 2=respondent, 3=admin"
+                        }
+                      }
+                    }
+                  }
                 }
               }
             },
+            "headers": {}
+          },
+          "409": {
+            "description": "Email уже зарегистрирован",
+            "headers": {}
+          },
+          "422": {
+            "description": "Ошибка валидации данных",
             "headers": {}
           }
         },
         "security": []
       }
     },
-    "/api/login": {
+    "/login": {
       "post": {
-        "summary": "Login - Invalid Credentials",
+        "summary": "Вход в систему",
         "deprecated": false,
-        "description": "Попытка входа с неверными учётными данными",
-        "tags": [],
-        "parameters": [
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          }
+        "description": "Аутентифицирует пользователя по email и паролю.\n\n### Ответ\n\nУспешный вход возвращает JWT-токен и данные пользователя.\n\n### Примеры\n\n**Успешный вход:**\n```json\n{\n  \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...\",\n  \"user\": {\n    \"id\": 1,\n    \"name\": \"John Doe\",\n    \"email\": \"user@example.com\"\n  }\n}\n```\n\n**Ошибка (401):**\n```json\n{\n  \"message\": \"Invalid credentials\"\n}\n```",
+        "tags": [
+          "Authentication"
         ],
+        "parameters": [],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "email": {
-                    "type": "string"
-                  },
-                  "password": {
-                    "type": "string"
-                  }
-                },
                 "required": [
                   "email",
                   "password"
-                ]
-              },
-              "example": {
-                "email": "nonexistent@example.com",
-                "password": "wrongpassword"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/api/logout": {
-      "post": {
-        "summary": "Logout",
-        "deprecated": false,
-        "description": "Завершение сеанса пользователя и отзыв токена",
-        "tags": [],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "Bearer {{author_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/api/surveys": {
-      "post": {
-        "summary": "Create Survey - Unauthorized",
-        "deprecated": false,
-        "description": "Попытка создания опроса без токена",
-        "tags": [],
-        "parameters": [
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
+                ],
                 "properties": {
-                  "title": {
-                    "type": "string"
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Email адрес пользователя",
+                    "example": "user@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "Пароль пользователя",
+                    "example": "password123"
                   }
-                },
-                "required": [
-                  "title"
-                ]
+                }
               },
               "example": {
-                "title": "Test Survey"
+                "email": "user@example.com",
+                "password": "password123"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
-            "description": "",
+            "description": "Успешный вход",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "description": "JWT-токен для аутентификации"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Неверные учётные данные (email или пароль)",
+            "headers": {}
+          },
+          "422": {
+            "description": "Ошибка валидации данных",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/logout": {
+      "post": {
+        "summary": "Выход из системы",
+        "deprecated": false,
+        "description": "Завершает сессию пользователя и инвалидирует текущий токен.\n\n### Важно\n\nПосле выхода токен становится недействительным. Для повторного входа необходимо снова вызвать `/login`.",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Успешный выход",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully logged out"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Требуется аутентификация",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/surveys": {
+      "get": {
+        "summary": "Получить список опубликованных опросов",
+        "deprecated": false,
+        "description": "Возвращает список всех опубликованных опросов.\n\n### Доступ\n\n**Публичный эндпоинт** — аутентификация не требуется.\n\n### Пример ответа\n\n```json\n{\n  \"data\": [\n    {\n      \"id\": 1,\n      \"title\": \"Опрос удовлетворённости\",\n      \"description\": \"Помогите нам стать лучше\",\n      \"status\": 2,\n      \"created_at\": \"2026-03-01T10:00:00Z\"\n    }\n  ]\n}\n```",
+        "tags": [
+          "Surveys"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Список опубликованных опросов",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Survey"
+                      }
+                    }
+                  }
                 }
               }
             },
@@ -256,128 +266,112 @@
         },
         "security": []
       },
-      "get": {
-        "summary": "Surveys - Pagination",
+      "post": {
+        "summary": "Создать новый опрос",
         "deprecated": false,
-        "description": "Администратор может просматривать статистику любого опроса",
-        "tags": [],
-        "parameters": [
-          {
-            "name": "per_page",
-            "in": "query",
-            "description": "",
-            "required": true,
-            "example": "10",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "description": "",
-            "required": true,
-            "example": "desc",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          }
+        "description": "Создаёт новый опрос в статусе «черновик».\n\n### Требования\n\n- Только авторизованные пользователи с ролью **author** могут создавать опросы\n- Название опроса обязательно\n- Новый опрос создаётся в статусе **draft** (черновик)\n\n### Пример ответа\n\n```json\n{\n  \"id\": 1,\n  \"author_id\": 1,\n  \"title\": \"Мой опрос\",\n  \"description\": \"Описание опроса\",\n  \"status\": 1,\n  \"created_at\": \"2026-03-01T10:00:00Z\"\n}\n```",
+        "tags": [
+          "Surveys"
         ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "title"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Название опроса",
+                    "example": "Опрос удовлетворённости клиентов"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Описание опроса (необязательно)",
+                    "example": "Помогите нам улучшить наш сервис"
+                  }
                 }
+              },
+              "example": {
+                "title": "Опрос удовлетворённости клиентов",
+                "description": "Помогите нам улучшить наш сервис"
               }
-            },
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Опрос успешно создан",
+            "headers": {}
+          },
+          "401": {
+            "description": "Требуется аутентификация",
+            "headers": {}
+          },
+          "422": {
+            "description": "Ошибка валидации данных",
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
-    "/api/surveys/survey_id": {
+    "/surveys/{id}": {
       "get": {
-        "summary": "Get Survey by ID",
+        "summary": "Получить детали опроса",
         "deprecated": false,
-        "description": "Получение подробной информации об опросе с вопросами",
-        "tags": [],
+        "description": "Возвращает полную информацию об опросе, включая вопросы и варианты ответов.\n\n### Доступ\n\n**Публичный эндпоинт** — доступны только опубликованные опросы.\n\n### Пример ответа\n\n```json\n{\n  \"id\": 1,\n  \"title\": \"Опрос\",\n  \"questions\": [\n    {\n      \"id\": 1,\n      \"text\": \"Ваш возраст?\",\n      \"type\": \"single_choice\",\n      \"options\": [\n        {\"id\": 1, \"text\": \"18-25\"},\n        {\"id\": 2, \"text\": \"26-35\"}\n      ]\n    }\n  ]\n}\n```",
+        "tags": [
+          "Surveys"
+        ],
         "parameters": [
           {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
+            "name": "id",
+            "in": "path",
+            "description": "ID опроса",
             "required": true,
-            "example": "application/json",
+            "example": 0,
             "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
+            "description": "Детали опроса",
+            "headers": {}
+          },
+          "404": {
+            "description": "Опрос не найден или не опубликован",
             "headers": {}
           }
         },
         "security": []
       },
       "put": {
-        "summary": "Update Survey (Draft)",
+        "summary": "Редактировать опрос",
         "deprecated": false,
-        "description": "Обновление данных черновика опроса",
-        "tags": [],
+        "description": "Обновляет информацию об опросе.\n\n### Ограничения\n\n- Можно редактировать только опросы в статусе **draft** (черновик)\n- После публикации структура опроса не может быть изменена\n- Только автор опроса может редактировать\n\n### Пример\n\n**Запрос:**\n```json\n{\n  \"title\": \"Обновлённое название\",\n  \"description\": \"Новое описание\"\n}\n```",
+        "tags": [
+          "Surveys"
+        ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "",
+            "name": "id",
+            "in": "path",
+            "description": "ID опроса",
             "required": true,
-            "example": "Bearer {{author_token}}",
+            "example": 0,
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
@@ -388,204 +382,194 @@
                 "type": "object",
                 "properties": {
                   "title": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Новое название опроса"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Новое описание опроса"
                   }
-                },
-                "required": [
-                  "title"
-                ]
+                }
               },
-              "example": {
-                "title": "Updated Survey"
-              }
+              "examples": {}
             }
           }
         },
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
+            "description": "Опрос успешно обновлён",
+            "headers": {}
+          },
+          "403": {
+            "description": "Доступ запрещён (не автор или опрос опубликован)",
+            "headers": {}
+          },
+          "404": {
+            "description": "Опрос не найден",
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
-        "summary": "Admin Delete Any Survey",
+        "summary": "Удалить опрос",
         "deprecated": false,
-        "description": "Администратор может удалить любой опрос",
-        "tags": [],
+        "description": "Удаляет опрос и все связанные данные (вопросы, варианты, ответы).\n\n### Доступ\n\n- **Author** — может удалять только свои опросы\n- **Admin** — может удалять любые опросы\n\n### Важно\n\nЭто действие необратимо! Все данные опроса будут удалены.",
+        "tags": [
+          "Surveys"
+        ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "",
+            "name": "id",
+            "in": "path",
+            "description": "ID опроса",
             "required": true,
-            "example": "Bearer {{admin_token}}",
+            "example": 0,
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
+            "description": "Опрос успешно удалён",
+            "headers": {}
+          },
+          "403": {
+            "description": "Доступ запрещён",
+            "headers": {}
+          },
+          "404": {
+            "description": "Опрос не найден",
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
-    "/api/surveys/survey_id/publish": {
+    "/surveys/{id}/publish": {
       "post": {
-        "summary": "Publish Survey - Without Questions",
+        "summary": "Опубликовать опрос",
         "deprecated": false,
-        "description": "Попытка опубликовать опрос без вопросов",
-        "tags": [],
+        "description": "Публикует опрос, делая его доступным для прохождения респондентами.\n\n### Важные моменты\n\n- После публикации **нельзя редактировать** структуру опроса (вопросы и варианты)\n- Можно только закрыть опрос или удалить\n- Статус меняется с **draft** на **published**\n\n### Доступ\n\nТолько автор опроса может опубликовать свой опрос.",
+        "tags": [
+          "Surveys"
+        ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "",
+            "name": "id",
+            "in": "path",
+            "description": "ID опроса",
             "required": true,
-            "example": "Bearer {{author_token}}",
+            "example": 0,
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Опрос успешно опубликован",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Survey published successfully"
+                    },
+                    "survey": {
+                      "$ref": "#/components/schemas/Survey"
+                    }
+                  }
                 }
               }
             },
             "headers": {}
+          },
+          "403": {
+            "description": "Доступ запрещён",
+            "headers": {}
+          },
+          "404": {
+            "description": "Опрос не найден",
+            "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
-    "/api/surveys/survey_id/close": {
+    "/surveys/{id}/close": {
       "post": {
-        "summary": "Admin Close Any Survey",
+        "summary": "Закрыть опрос",
         "deprecated": false,
-        "description": "Администратор может закрыть любой опубликованный опрос",
-        "tags": [],
+        "description": "Закрывает опрос, запрещая новые ответы.\n\n### Важные моменты\n\n- Закрытый опрос **нельзя пройти** повторно\n- Статус меняется на **closed**\n- Результаты остаются доступными для просмотра\n\n### Доступ\n\nТолько автор опроса может закрыть свой опрос.",
+        "tags": [
+          "Surveys"
+        ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "",
+            "name": "id",
+            "in": "path",
+            "description": "ID опроса",
             "required": true,
-            "example": "Bearer {{admin_token}}",
+            "example": 0,
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
+            "description": "Опрос успешно закрыт",
+            "headers": {}
+          },
+          "403": {
+            "description": "Доступ запрещён",
+            "headers": {}
+          },
+          "404": {
+            "description": "Опрос не найден",
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
-    "/api/surveys/survey_id/questions": {
+    "/surveys/{id}/questions": {
       "post": {
-        "summary": "Create Question - Cannot Add to Published",
+        "summary": "Добавить вопрос к опросу",
         "deprecated": false,
-        "description": "Нельзя добавить вопрос в опубликованный опрос",
-        "tags": [],
+        "description": "Добавляет новый вопрос к опросу.\n\n### Типы вопросов\n\n| Тип | Описание | Требуемые данные |\n|-----|----------|------------------|\n| `single_choice` | Один вариант из нескольких | `options` (массив вариантов) |\n| `multiple_choice` | Несколько вариантов | `options` (массив вариантов) |\n| `text_answer` | Текстовый ответ | Не требуется |\n\n### Ограничения\n\n- Можно добавлять вопросы только к опросам в статусе **draft**\n- Поле `required` определяет, обязательно ли отвечать на вопрос",
+        "tags": [
+          "Questions"
+        ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "",
+            "name": "id",
+            "in": "path",
+            "description": "ID опроса",
             "required": true,
-            "example": "Bearer {{author_token}}",
+            "example": 0,
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
@@ -594,281 +578,248 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "type": {
-                    "type": "integer"
-                  },
-                  "text": {
-                    "type": "string"
-                  },
-                  "order": {
-                    "type": "integer"
-                  }
-                },
                 "required": [
                   "type",
-                  "text",
-                  "order"
-                ]
-              },
-              "example": {
-                "type": 1,
-                "text": "Another question",
-                "order": 2
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/api/questions/question_id": {
-      "put": {
-        "summary": "Update Question",
-        "deprecated": false,
-        "description": "Обновление текста вопроса",
-        "tags": [],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "Bearer {{author_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "text": {
-                    "type": "string"
-                  }
-                },
-                "required": [
                   "text"
-                ]
-              },
-              "example": {
-                "text": "Updated question"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      },
-      "delete": {
-        "summary": "Delete Question",
-        "deprecated": false,
-        "description": "Удаление вопроса из опроса",
-        "tags": [],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "Bearer {{author_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/api/questions/question_id/options": {
-      "post": {
-        "summary": "Create Option",
-        "deprecated": false,
-        "description": "Добавление варианта ответа к вопросу",
-        "tags": [],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "Bearer {{author_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
+                ],
                 "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "single_choice",
+                      "multiple_choice",
+                      "text_answer"
+                    ],
+                    "description": "Тип вопроса",
+                    "example": "single_choice"
+                  },
                   "text": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Текст вопроса",
+                    "example": "Какой ваш любимый цвет?"
                   },
                   "order": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "Порядок отображения",
+                    "example": 1
+                  },
+                  "required": {
+                    "type": "boolean",
+                    "description": "Обязательный ли вопрос",
+                    "example": true
                   }
-                },
-                "required": [
-                  "text",
-                  "order"
-                ]
+                }
               },
               "example": {
-                "text": "Option A",
+                "type": "single_choice",
+                "text": "Какой ваш любимый цвет?",
+                "order": 1,
+                "required": true
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Вопрос успешно создан",
+            "headers": {}
+          },
+          "403": {
+            "description": "Доступ запрещён или опрос опубликован",
+            "headers": {}
+          },
+          "422": {
+            "description": "Ошибка валидации",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/questions/{id}": {
+      "put": {
+        "summary": "Редактировать вопрос",
+        "deprecated": false,
+        "description": "Обновляет существующий вопрос.\n\n### Ограничения\n\n- Можно редактировать только вопросы в опросах со статусом **draft**\n- Нельзя изменить тип вопроса после создания",
+        "tags": [
+          "Questions"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID вопроса",
+            "required": true,
+            "example": 0,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "Новый текст вопроса"
+                  },
+                  "order": {
+                    "type": "integer",
+                    "description": "Новый порядок отображения"
+                  },
+                  "required": {
+                    "type": "boolean",
+                    "description": "Обязательный ли вопрос"
+                  }
+                }
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Вопрос успешно обновлён",
+            "headers": {}
+          },
+          "403": {
+            "description": "Доступ запрещён или опрос опубликован",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Удалить вопрос",
+        "deprecated": false,
+        "description": "Удаляет вопрос и все связанные варианты ответов.\n\n### Важно\n\nЭто действие необратимо!",
+        "tags": [
+          "Questions"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID вопроса",
+            "required": true,
+            "example": 0,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Вопрос успешно удалён",
+            "headers": {}
+          },
+          "403": {
+            "description": "Доступ запрещён",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/questions/{id}/options": {
+      "post": {
+        "summary": "Добавить вариант ответа",
+        "deprecated": false,
+        "description": "Добавляет вариант ответа к вопросу.\n\n### Применение\n\nВарианты используются только для вопросов типов:\n- `single_choice` — одиночный выбор\n- `multiple_choice` — множественный выбор\n\n### Ограничения\n\n- Можно добавлять варианты только к вопросам в опросах со статусом **draft**",
+        "tags": [
+          "Options"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID вопроса",
+            "required": true,
+            "example": 0,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "text"
+                ],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "Текст варианта ответа",
+                    "example": "Красный"
+                  },
+                  "order": {
+                    "type": "integer",
+                    "description": "Порядок отображения",
+                    "example": 1
+                  }
+                }
+              },
+              "example": {
+                "text": "Красный",
                 "order": 1
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
+          "201": {
+            "description": "Вариант успешно создан",
+            "headers": {}
+          },
+          "403": {
+            "description": "Доступ запрещён",
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
-    "/api/options/option_id": {
+    "/options/{id}": {
       "put": {
-        "summary": "Update Option",
+        "summary": "Редактировать вариант",
         "deprecated": false,
-        "description": "Обновление текста варианта ответа",
-        "tags": [],
+        "description": "Обновляет существующий вариант ответа.",
+        "tags": [
+          "Options"
+        ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "",
+            "name": "id",
+            "in": "path",
+            "description": "ID варианта",
             "required": true,
-            "example": "Bearer {{author_token}}",
+            "example": 0,
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
@@ -879,114 +830,88 @@
                 "type": "object",
                 "properties": {
                   "text": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Новый текст варианта"
+                  },
+                  "order": {
+                    "type": "integer",
+                    "description": "Новый порядок отображения"
                   }
-                },
-                "required": [
-                  "text"
-                ]
+                }
               },
-              "example": {
-                "text": "Updated Option A"
-              }
+              "examples": {}
             }
           }
         },
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
+            "description": "Вариант успешно обновлён",
+            "headers": {}
+          },
+          "403": {
+            "description": "Доступ запрещён",
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
-        "summary": "Delete Option",
+        "summary": "Удалить вариант",
         "deprecated": false,
-        "description": "Удаление варианта ответа",
-        "tags": [],
+        "description": "Удаляет вариант ответа.\n\n### Важно\n\nЕсли на этот вариант были ответы, они также будут удалены!",
+        "tags": [
+          "Options"
+        ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "",
+            "name": "id",
+            "in": "path",
+            "description": "ID варианта",
             "required": true,
-            "example": "Bearer {{author_token}}",
+            "example": 0,
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
+            "description": "Вариант успешно удалён",
+            "headers": {}
+          },
+          "403": {
+            "description": "Доступ запрещён",
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
-    "/api/surveys/survey_id/respond": {
+    "/surveys/{id}/respond": {
       "post": {
-        "summary": "Submit Response - Validation (Missing Required)",
+        "summary": "Пройти опрос",
         "deprecated": false,
-        "description": "Попытка повторного прохождения опроса тем же пользователем",
-        "tags": [],
+        "description": "Отправляет ответы на вопросы опроса.\n\n### Требования\n\n- Опрос должен быть в статусе **published**\n- Респондент должен быть аутентифицирован\n- Один пользователь может пройти опрос только **один раз**\n\n### Формат ответов\n\n**Для single_choice:**\n```json\n{\n  \"answers\": [\n    {\"question_id\": 1, \"option_id\": 2}\n  ]\n}\n```\n\n**Для multiple_choice:**\n```json\n{\n  \"answers\": [\n    {\"question_id\": 1, \"option_ids\": [1, 3]}\n  ]\n}\n```\n\n**Для text_answer:**\n```json\n{\n  \"answers\": [\n    {\"question_id\": 1, \"text_value\": \"Мой ответ\"}\n  ]\n}\n```",
+        "tags": [
+          "Responses"
+        ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "",
+            "name": "id",
+            "in": "path",
+            "description": "ID опроса",
             "required": true,
-            "example": "Bearer {{respondent_token}}",
+            "example": 0,
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
@@ -995,136 +920,291 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "required": [
+                  "answers"
+                ],
                 "properties": {
                   "answers": {
                     "type": "array",
+                    "description": "Массив ответов на вопросы",
                     "items": {
-                      "type": "string"
+                      "type": "object",
+                      "properties": {
+                        "question_id": {
+                          "type": "integer",
+                          "description": "ID вопроса"
+                        },
+                        "option_id": {
+                          "type": "integer",
+                          "description": "ID выбранного варианта (для single_choice)"
+                        },
+                        "option_ids": {
+                          "type": "array",
+                          "items": {
+                            "type": "integer"
+                          },
+                          "description": "Массив ID вариантов (для multiple_choice)"
+                        },
+                        "text_value": {
+                          "type": "string",
+                          "description": "Текстовый ответ (для text_answer)"
+                        }
+                      }
                     }
                   }
-                },
-                "required": [
-                  "answers"
-                ]
+                }
               },
               "example": {
-                "answers": []
+                "answers": [
+                  {
+                    "question_id": 1,
+                    "option_id": 2
+                  },
+                  {
+                    "question_id": 2,
+                    "option_ids": [
+                      1,
+                      3
+                    ]
+                  },
+                  {
+                    "question_id": 3,
+                    "text_value": "Развёрнутый ответ"
+                  }
+                ]
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
-          "200": {
-            "description": "",
+          "201": {
+            "description": "Ответ успешно принят",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "survey_id": {
+                      "type": "integer"
+                    },
+                    "answers": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
                 }
               }
             },
             "headers": {}
+          },
+          "403": {
+            "description": "Опрос не опубликован или закрыт",
+            "headers": {}
+          },
+          "409": {
+            "description": "Вы уже прошли этот опрос",
+            "headers": {}
+          },
+          "422": {
+            "description": "Ошибка валидации ответов",
+            "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
-    "/api/surveys/survey_id/results": {
+    "/surveys/{id}/results": {
       "get": {
-        "summary": "Get Statistics - Unauthorized",
+        "summary": "Получить статистику опроса",
         "deprecated": false,
-        "description": "Респондент не может просматривать статистику",
-        "tags": [],
+        "description": "Возвращает статистику по ответам на опрос.\n\n### Данные в ответе\n\n- Общее количество респондентов\n- По каждому вопросу с выбором:\n  - Количество ответов по каждому варианту\n  - Процентное соотношение\n- По текстовым вопросам:\n  - Список всех ответов\n\n### Доступ\n\nТолько автор опроса или администратор.",
+        "tags": [
+          "Results"
+        ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "",
+            "name": "id",
+            "in": "path",
+            "description": "ID опроса",
             "required": true,
-            "example": "Bearer {{respondent_token}}",
+            "example": 0,
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Статистика опроса",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "survey": {
+                      "$ref": "#/components/schemas/Survey"
+                    },
+                    "total_responses": {
+                      "type": "integer"
+                    },
+                    "statistics": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "question_id": {
+                            "type": "integer"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "options": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "option_id": {
+                                  "type": "integer"
+                                },
+                                "text": {
+                                  "type": "string"
+                                },
+                                "count": {
+                                  "type": "integer"
+                                },
+                                "percentage": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             },
             "headers": {}
+          },
+          "403": {
+            "description": "Доступ запрещён",
+            "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
-    "/api/surveys/survey_id/results/export": {
+    "/surveys/{id}/results/export": {
       "get": {
-        "summary": "Export Results (Admin)",
+        "summary": "Экспорт результатов в JSON",
         "deprecated": false,
-        "description": "Администратор экспортирует результаты любого опроса",
-        "tags": [],
+        "description": "Экспортирует все результаты опроса в формате JSON.\n\n### Данные в ответе\n\n- Информация об опросе\n- Список всех респондентов\n- Все ответы с деталями\n\n### Доступ\n\nТолько автор опроса или администратор.",
+        "tags": [
+          "Results"
+        ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "",
+            "name": "id",
+            "in": "path",
+            "description": "ID опроса",
             "required": true,
-            "example": "Bearer {{admin_token}}",
+            "example": 0,
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
+            "description": "JSON с результатами опроса",
+            "headers": {}
+          },
+          "403": {
+            "description": "Доступ запрещён",
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     }
   },
   "components": {
-    "schemas": {},
+    "schemas": {
+      "Survey": {
+        "type": "object",
+        "description": "Модель опроса",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Уникальный ID опроса"
+          },
+          "author_id": {
+            "type": "integer",
+            "description": "ID автора опроса"
+          },
+          "title": {
+            "type": "string",
+            "description": "Название опроса"
+          },
+          "description": {
+            "type": "string",
+            "description": "Описание опроса"
+          },
+          "status": {
+            "type": "integer",
+            "description": "Статус: 1=draft, 2=published, 3=closed"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Дата публикации"
+          },
+          "closed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Дата закрытия"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Дата создания"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Дата обновления"
+          }
+        }
+      }
+    },
     "responses": {},
-    "securitySchemes": {}
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "JWT-токен, полученный при регистрации или входе. Передавайте в заголовке: `Authorization: Bearer {token}`"
+      }
+    }
   },
   "servers": [],
   "security": []
