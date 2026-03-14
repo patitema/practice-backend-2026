@@ -57,6 +57,43 @@ class User extends Authenticatable
     }
 
     /**
+     * Check if user has a specific role.
+     */
+    public function hasRole(string $roleName): bool
+    {
+        // Check if role relationship is loaded
+        if ($this->relationLoaded('role')) {
+            return $this->role && $this->role->name === $roleName;
+        }
+        
+        // Fallback: check by role ID
+        $roleId = $this->getAttribute('role');
+        $roleMap = [
+            'author' => 1,
+            'respondent' => 2,
+            'admin' => 3,
+        ];
+        
+        return isset($roleMap[$roleName]) && $roleId === $roleMap[$roleName];
+    }
+
+    /**
+     * Check if user is admin.
+     */
+    public function isAdmin(): bool
+    {
+        return $this->hasRole('admin');
+    }
+
+    /**
+     * Check if user is author.
+     */
+    public function isAuthor(): bool
+    {
+        return $this->hasRole('author');
+    }
+
+    /**
      * Get the surveys authored by the user.
      */
     public function surveys(): HasMany

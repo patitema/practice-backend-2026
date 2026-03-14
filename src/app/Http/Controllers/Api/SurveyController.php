@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Survey;
 use App\Models\Status;
+use App\Http\Resources\SurveyResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,15 +14,35 @@ class SurveyController extends Controller
     /**
      * Get all published surveys.
      */
-    public function index()
+    public function index(Request $request)
     {
         $publishedStatusId = Status::where('name', 'published')->value('id');
-        
-        $surveys = Survey::with(['author', 'status'])
-            ->where('status', $publishedStatusId)
-            ->get();
 
-        return response()->json($surveys);
+        $query = Survey::with(['author', 'status'])
+            ->where('status', $publishedStatusId);
+
+        // Filter by status if provided
+        if ($request->has('status')) {
+            $statusId = Status::where('name', $request->status)->value('id');
+            if ($statusId) {
+                $query->where('status', $statusId);
+            }
+        }
+
+        // Sort by created_at (default: newest first)
+        $sortDirection = $request->get('sort', 'desc');
+        if (!in_array($sortDirection, ['asc', 'desc'])) {
+            $sortDirection = 'desc';
+        }
+        $query->orderBy('created_at', $sortDirection);
+
+        // Paginate (15 per page)
+        $perPage = $request->get('per_page', 15);
+        $perPage = min(max((int) $perPage, 1), 50); // Limit between 1 and 50
+
+        $surveys = $query->paginate($perPage);
+
+        return SurveyResource::collection($surveys);
     }
 
     /**
@@ -32,7 +53,7 @@ class SurveyController extends Controller
         $survey = Survey::with(['author', 'status', 'questions.type', 'questions.options'])
             ->findOrFail($id);
 
-        return response()->json($survey);
+        return new SurveyResource($survey);
     }
 
     /**
@@ -54,7 +75,7 @@ class SurveyController extends Controller
             'status' => $draftStatusId,
         ]);
 
-        return response()->json($survey, 201);
+        return new SurveyResource($survey);
     }
 
     /**
@@ -79,7 +100,7 @@ class SurveyController extends Controller
 
         $survey->update($request->only(['title', 'description']));
 
-        return response()->json($survey);
+        return new SurveyResource($survey->load('author', 'status'));
     }
 
     /**
@@ -93,14 +114,29 @@ class SurveyController extends Controller
             return response()->json(['error' => 'Unauthorized'], 403);
         }
 
+        // Check if survey has at least one question
+        if ($survey->questions()->count() === 0) {
+            return response()->json(['error' => 'Cannot publish survey without questions'], 400);
+        }
+
+        // Check if survey is already published
         $publishedStatusId = Status::where('name', 'published')->value('id');
+        if ($survey->status == $publishedStatusId) {
+            return response()->json(['error' => 'Survey is already published'], 400);
+        }
+
+        // Check if survey is closed
+        $closedStatusId = Status::where('name', 'closed')->value('id');
+        if ($survey->status == $closedStatusId) {
+            return response()->json(['error' => 'Cannot publish a closed survey'], 400);
+        }
 
         $survey->update([
             'status' => $publishedStatusId,
             'published_at' => now(),
         ]);
 
-        return response()->json($survey);
+        return new SurveyResource($survey->load('author', 'status'));
     }
 
     /**
@@ -109,8 +145,10 @@ class SurveyController extends Controller
     public function close($id)
     {
         $survey = Survey::findOrFail($id);
+        $user = request()->user();
 
-        if ($survey->author_id !== request()->user()->id) {
+        // Check if user is admin or author
+        if (!$user->isAdmin() && $survey->author_id !== $user->id) {
             return response()->json(['error' => 'Unauthorized'], 403);
         }
 
@@ -121,7 +159,7 @@ class SurveyController extends Controller
             'closed_at' => now(),
         ]);
 
-        return response()->json($survey);
+        return new SurveyResource($survey->load('author', 'status'));
     }
 
     /**
@@ -130,8 +168,10 @@ class SurveyController extends Controller
     public function destroy($id)
     {
         $survey = Survey::findOrFail($id);
+        $user = request()->user();
 
-        if ($survey->author_id !== request()->user()->id) {
+        // Admin can delete any survey, author can delete only their own
+        if (!$user->isAdmin() && $survey->author_id !== $user->id) {
             return response()->json(['error' => 'Unauthorized'], 403);
         }
 

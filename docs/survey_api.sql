@@ -91,3 +91,12 @@ ALTER TABLE `answers` ADD FOREIGN KEY (`response_id`) REFERENCES `responses` (`i
 ALTER TABLE `answers` ADD FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`);
 
 ALTER TABLE `answers` ADD FOREIGN KEY (`option_id`) REFERENCES `options` (`id`);
+
+-- Seed data for roles
+INSERT INTO roles (id, name) VALUES (1, 'author'), (2, 'respondent'), (3, 'admin');
+
+-- Seed data for statuses
+INSERT INTO statuses (id, name) VALUES (1, 'draft'), (2, 'published'), (3, 'closed');
+
+-- Seed data for types
+INSERT INTO types (id, name) VALUES (1, 'single_choice'), (2, 'multiple_choice'), (3, 'text_answer');

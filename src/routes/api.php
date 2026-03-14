@@ -12,12 +12,15 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-// Опросы (публичные)
+// Публичные маршруты (опросы)
 Route::get('/surveys', [SurveyController::class, 'index']);
 Route::get('/surveys/{id}', [SurveyController::class, 'show']);
 
 // Защищённые маршруты
 Route::middleware('auth:sanctum')->group(function () {
+    // Logout
+    Route::post('/logout', [AuthController::class, 'logout']);
+
     // Опросы
     Route::post('/surveys', [SurveyController::class, 'store']);
     Route::put('/surveys/{id}', [SurveyController::class, 'update']);

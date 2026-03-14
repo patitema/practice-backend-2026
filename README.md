@@ -2,6 +2,11 @@
 
 REST API для создания опросов, прохождения и анализа результатов.
 
+![Tests](https://img.shields.io/badge/tests-29%20passed-green)
+![PHP](https://img.shields.io/badge/PHP-8.4-blue)
+![Laravel](https://img.shields.io/badge/Laravel-12-red)
+![Docker](https://img.shields.io/badge/Docker-ready-blue)
+
 ---
 
 ## О проекте
@@ -84,14 +89,70 @@ API доступен по адресу: `http://localhost:8000/api`
 
 ---
 
+## 🐳 Docker
+
+### Требования
+
+- Docker
+- Docker Compose
+
+### Быстрый старт
+
+1. **Запуск контейнеров**
+   ```bash
+   docker-compose up -d
+   ```
+
+2. **Запуск миграций**
+   ```bash
+   docker-compose exec app php artisan migrate --seed
+   ```
+
+3. **Запуск тестов**
+   ```bash
+   docker-compose exec app php artisan test
+   ```
+
+4. **Остановка**
+   ```bash
+   docker-compose down
+   ```
+
+### Сервисы
+
+| Сервис | URL | Описание |
+|--------|-----|----------|
+| API | http://localhost:8000 | Laravel приложение |
+| phpMyAdmin | http://localhost:8080 | Веб-интерфейс БД |
+| MySQL | localhost:3306 | База данных |
+
+### Полезные команды
+
+```bash
+# Просмотр логов
+docker-compose logs -f app
+
+# Доступ к shell контейнера
+docker-compose exec app bash
+
+# Перезапуск
+docker-compose restart
+
+# Полная пересборка
+docker-compose up -d --build
+```
+
+---
+
 ## API Endpoints
 
 ### Аутентификация
 
-| Метод | URL | Описание |
-|-------|-----|----------|
-| `POST` | `/api/register` | Регистрация |
-| `POST` | `/api/login` | Вход |
+| Метод | URL | Описание | Auth |
+|-------|-----|----------|------|
+| `POST` | `/api/register` | Регистрация | Нет |
+| `POST` | `/api/login` | Вход | Нет |
+| `POST` | `/api/logout` | Выход | Да |
 
 ### Опросы
 
@@ -137,6 +198,19 @@ API доступен по адресу: `http://localhost:8000/api`
 > **Примечание:** Для защищённых эндпоинтов передавайте токен в заголовке:
 > `Authorization: Bearer <ваш_токен>`
 
+### Права доступа
+
+| Роль | Создание опросов | Редактирование | Удаление | Статистика | Прохождение |
+|------|-----------------|----------------|----------|------------|-------------|
+| **author** | ✅ Свои | ✅ Свои (черновик) | ✅ Свои | ✅ Свои | ✅ |
+| **admin** | ❌ | ❌ | ✅ Любые | ✅ Любые | ❌ |
+| **respondent** | ❌ | ❌ | ❌ | ❌ | ✅ |
+
+> **Примечание:** Роль `admin` назначается вручную через БД:
+> ```sql
+> UPDATE users SET role = 3 WHERE email = 'admin@example.com';
+> ```
+
 Полная документация API доступна в файле [`survey-api.md`](./survey-api.md).
 
 ---
@@ -147,7 +221,7 @@ API доступен по адресу: `http://localhost:8000/api`
 
 | Таблица | Описание |
 |---------|----------|
-| `roles` | Роли: author, respondent |
+| `roles` | Роли: author (1), respondent (2), **admin (3)** |
 | `statuses` | Статусы: draft, published, closed |
 | `types` | Типы вопросов: single_choice, multiple_choice, text_answer |
 
@@ -179,6 +253,7 @@ practice-backend-2026/
 │   │   └── seeders/              # Сидеры
 │   ├── routes/
 │   │   └── api.php               # API маршруты
+│   ├── tests/                    # Автотесты
 │   └── .env                      # Конфигурация
 ├── docs/
 │   ├── er-diagram.png            # ER-диаграмма
@@ -186,7 +261,6 @@ practice-backend-2026/
 │   ├── Survey API.apidog.json    # ApiDog спецификация
 │   ├── Survey API.postman.json   # Postman коллекция
 │   └── survey_api.sql            # SQL-схема
-├── tests/                        # Автотесты
 ├── README.md                     # Этот файл
 ├── survey-api.md                 # Предметная область проекта
 └── Task.md                       # Задание практики

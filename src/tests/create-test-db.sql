@@ -1,0 +1,3 @@
+CREATE DATABASE IF NOT EXISTS survey_api_test;
+GRANT ALL PRIVILEGES ON survey_api_test.* TO 'root'@'%';
+FLUSH PRIVILEGES;

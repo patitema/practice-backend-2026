@@ -1,0 +1,48 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+vendor/
+node_modules/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+storage/logs/*
+
+# Tests (optional for production)
+# tests/
+# phpunit.xml
+
+# Documentation
+docs/
+plans/
+reports/
+*.md
+
+# Docker
+Dockerfile
+docker-compose.yml
+.docker/
+
+# Build artifacts
+public/hot
+public/mix-manifest.json
+public/build
